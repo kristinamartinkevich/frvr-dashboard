@@ -4,7 +4,6 @@ import { Select, SelectItem } from "@nextui-org/react";
 import { DateRangePicker } from "@nextui-org/date-picker";
 import { parseDate } from "@internationalized/date";
 import { formatDateRange } from "@/utils/utils";
-import Box from '@mui/material/Box';
 
 const options = [
     { value: "impressions", label: "Impressions" },
@@ -29,29 +28,31 @@ function Filters() {
     };
 
     return (
-        <Box sx={{ display: 'flex' }} className="gap-2">
-            <Select
-                label="Select the property"
-                className="max-w-xs"
-                value={selectedProperty}
-                onChange={(e) => setSelectedProperty(e.target.value as keyof Overtime)}
-            >
-                {options.map((option) => (
-                    <SelectItem key={option.value}>
-                        {option.label}
-                    </SelectItem>
-                ))}
-            </Select>
-            <DateRangePicker
-                value={{
-                    start: parseDate(startDate),
-                    end: parseDate(endDate)
-                }}
-                label="Stay range"
-                className="max-w-xs"
-                onChange={(e) => setDateRange(e)}
-            />
-        </Box>
+        <>
+            <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
+                <Select
+                    label="Select the property"
+                    className="max-w-xs"
+                    value={selectedProperty}
+                    onChange={(e) => setSelectedProperty(e.target.value as keyof Overtime)}
+                >
+                    {options.map((option) => (
+                        <SelectItem key={option.value}>
+                            {option.label}
+                        </SelectItem>
+                    ))}
+                </Select>
+                <DateRangePicker
+                    value={{
+                        start: parseDate(startDate),
+                        end: parseDate(endDate)
+                    }}
+                    label="Stay range"
+                    className="max-w-xs"
+                    onChange={(e) => setDateRange(e)}
+                />
+            </div>
+        </>
     );
 }
 

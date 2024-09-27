@@ -9,21 +9,12 @@ interface LoginFormProps {
 function LoginForm(props: LoginFormProps) {
     const { changeAuthneticationMode, handleSubmit } = props;
 
-    const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
-        event?.preventDefault();
-        handleSubmit()
-    }
-
     return (
-        <form className="max-w-sm mx-auto" onSubmit={submitForm}>
-            <div className="mb-5">
-                <Input type="email" label="Email" placeholder="Enter your email" />
-            </div>
-            <div className="mb-5">
-                <Input type="password" label="Password" placeholder="Enter your password" />
-            </div>
+        <form className="max-w-sm mx-auto" >
+            <Input type="email" label="Email" className="mb-5" placeholder="Enter your email" />
+            <Input type="password" className="mb-5" label="Password" placeholder="Enter your password" />
             <div className="flex justify-between mb-5">
-                <Button type="submit">Log In</Button>
+                <Button type="submit" color="primary" onPress={handleSubmit}>Log In</Button>
                 <Checkbox defaultSelected>Remember me</Checkbox>
             </div>
             <div className="flex items-center justify-between">

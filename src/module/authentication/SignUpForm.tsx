@@ -9,27 +9,14 @@ interface SignUpFormProps {
 function SignUpForm(props: SignUpFormProps) {
     const { changeAuthneticationMode, handleSubmit } = props;
 
-    const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
-        event?.preventDefault();
-        handleSubmit()
-    }
-
     return (
-        <form className="max-w-sm mx-auto" onSubmit={submitForm}>
-            <div className="mb-5">
-                <Input type="email" label="Email" placeholder="Enter your email" />
-            </div>
-            <div className="mb-5">
-                <Input type="text" label="Username" placeholder="Choose a username" />
-            </div>
-            <div className="mb-5">
-                <Input type="password" label="Password" />
-            </div>
-            <div className="mb-5">
-                <Input type="password" label="Repeat Password" />
-            </div>
+        <form className="max-w-sm mx-auto">
+            <Input type="email" className="mb-5" label="Email" placeholder="Enter your email" />
+            <Input type="text" className="mb-5" label="Username" placeholder="Choose a username" />
+            <Input type="password" className="mb-5" label="Password" />
+            <Input type="password" className="mb-5" label="Repeat Password" />
             <div className="flex justify-between mb-5">
-                <Button type="submit">Sign Up</Button>
+                <Button type="submit" color="secondary" onPress={handleSubmit}>Sign Up</Button>
             </div>
             <div className="flex items-center justify-between">
                 <span> Already have an account?</span>

@@ -13,6 +13,7 @@ import {
 import { ThemeSwitch } from "@/components/theme-switch";
 import Logo from "@/assets/icons/FRVR.svg";
 import { useDashboardStore } from "@/store";
+import { Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@nextui-org/react";
 
 export const Navbar = () => {
   const { setLoggedIn } = useDashboardStore();
@@ -28,9 +29,10 @@ export const Navbar = () => {
           >
             <img
               src={Logo}
-              width="100"
+              width="60"
               height="40"
             />
+            <span className="font-extrabold	">FRVR</span>
           </Link>
         </NavbarBrand>
         <div className="hidden lg:flex gap-4 justify-start ml-2 justify-between items-center">
@@ -42,9 +44,6 @@ export const Navbar = () => {
               Home
             </Link>
           </NavbarItem>
-          <NavbarItem>
-            <Link color="foreground" onClick={() => setLoggedIn(false)} >Log Out</Link>
-          </NavbarItem>
         </div>
       </NavbarContent>
 
@@ -55,10 +54,50 @@ export const Navbar = () => {
         <NavbarItem className="hidden sm:flex gap-2">
           <ThemeSwitch />
         </NavbarItem>
+        <NavbarItem>
+          <Dropdown placement="bottom-end">
+            <DropdownTrigger>
+              <Avatar
+                isBordered
+                as="button"
+                className="transition-transform"
+                src="https://i.pravatar.cc/300?img=12"
+              />
+            </DropdownTrigger>
+            <DropdownMenu aria-label="Profile Actions" variant="flat">
+              <DropdownItem key="profile" className="h-14 gap-2 font-semibold" showDivider={true}>
+                benji@example.com
+              </DropdownItem>
+              <DropdownItem key="delete" className="text-danger" onAction={() => setLoggedIn(false)} color="danger">
+                Log Out
+              </DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+        </NavbarItem>
       </NavbarContent>
 
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
         <ThemeSwitch />
+        <NavbarItem>
+          <Dropdown placement="bottom-end">
+            <DropdownTrigger>
+              <Avatar
+                isBordered
+                as="button"
+                className="transition-transform"
+                src="https://i.pravatar.cc/300?img=12"
+              />
+            </DropdownTrigger>
+            <DropdownMenu aria-label="Profile Actions" variant="flat">
+              <DropdownItem key="profile" className="h-14 gap-2 font-semibold" showDivider={true}>
+                benji@example.com
+              </DropdownItem>
+              <DropdownItem key="delete" className="text-danger" onAction={() => setLoggedIn(false)} color="danger">
+                Log Out
+              </DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+        </NavbarItem>
         <NavbarMenuToggle />
       </NavbarContent>
 
@@ -74,9 +113,6 @@ export const Navbar = () => {
             >
               Home
             </Link>
-            <NavbarItem>
-              <Link onClick={() => setLoggedIn(false)} >Log Out</Link>
-            </NavbarItem>
           </NavbarMenuItem>
         </div>
       </NavbarMenu>

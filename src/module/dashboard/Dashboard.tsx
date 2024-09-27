@@ -3,12 +3,9 @@ import { fetchOvertime } from "../../utils/apiService";
 import { Suspense, lazy } from 'react';
 import { useDashboardStore } from "@/store";
 
-
 const Loader = lazy(() => import('../common/Loader'));
 const NoResults = lazy(() => import('../common/NoResults'));
-const Filters = lazy(() => import('./Filters'));
 const LineChartComponent = lazy(() => import('../common/LineChart'));
-
 
 function Dashboard() {
     const {
@@ -52,19 +49,14 @@ function Dashboard() {
             {
                 !loading ?
                     (overtimes.length > 0 ? (
-                        <>
+                        <div className="w-full">
                             <Suspense>
-                                <Filters />
+                                <LineChartComponent
+                                    seriesData={filteredOvertimes.map(item => item[selectedProperty])}
+                                    xAxisData={filteredOvertimes.map(item => new Date(item.date))}
+                                />
                             </Suspense>
-                            <div className="w-full">
-                                <Suspense>
-                                    <LineChartComponent
-                                        seriesData={filteredOvertimes.map(item => item[selectedProperty])}
-                                        xAxisData={filteredOvertimes.map(item => new Date(item.date))}
-                                    />
-                                </Suspense>
-                            </div>
-                        </>
+                        </div>
                     ) :
                         <Suspense>
                             <NoResults onButtonClick={() => getData(50)} />

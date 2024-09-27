@@ -48,3 +48,19 @@ export const formatDateRange = (e: any) => {
     const endDate = `${endYear}-${endMonth}-${endDay}`;
     return { startDate, endDate }
 };
+
+function formatToK(number: number) {
+    return (number / 1000).toFixed(2) + 'K';
+}
+
+export const sortDataForCharts = (xAxisData: Date[], seriesData: number[]) => {
+    const sortedData = xAxisData
+        .map((date, index) => ({ date, value: seriesData[index] }))
+        .sort((a, b) => a.date.getTime() - b.date.getTime());
+
+    const sortedXAxisData = sortedData.map(item => item.date);
+    const sortedSeriesData = sortedData.map(item => item.value);
+    const totalSum = formatToK(Math.round(seriesData.reduce((sum, value) => sum + value, 0)));
+
+    return { sortedXAxisData, sortedSeriesData, totalSum };
+};
