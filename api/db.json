@@ -1,0 +1,226 @@
+{
+  "totals": [
+    {
+      "dailyImpressions": 13121,
+      "ad_requests": 15157,
+      "revenue": 106.2
+    },
+    {
+      "dailyImpressions": 13970,
+      "ad_requests": 20282,
+      "revenue": 54.9
+    },
+    {
+      "dailyImpressions": 11743,
+      "ad_requests": 16482,
+      "revenue": 145.9
+    },
+    {
+      "dailyImpressions": 15900,
+      "ad_requests": 15563,
+      "revenue": 91.36
+    },
+    {
+      "dailyImpressions": 10188,
+      "ad_requests": 24609,
+      "revenue": 136.35
+    },
+    {
+      "dailyImpressions": 14668,
+      "ad_requests": 22333,
+      "revenue": 64.6
+    },
+    {
+      "dailyImpressions": 15031,
+      "ad_requests": 21190,
+      "revenue": 102.21
+    },
+    {
+      "dailyImpressions": 14425,
+      "ad_requests": 19214,
+      "revenue": 74.9
+    },
+    {
+      "dailyImpressions": 15977,
+      "ad_requests": 18171,
+      "revenue": 53.36
+    },
+    {
+      "dailyImpressions": 16916,
+      "ad_requests": 20525,
+      "revenue": 124.4
+    },
+    {
+      "dailyImpressions": 19901,
+      "ad_requests": 24244,
+      "revenue": 84.24
+    },
+    {
+      "dailyImpressions": 11845,
+      "ad_requests": 15419,
+      "revenue": 53.15
+    },
+    {
+      "dailyImpressions": 16933,
+      "ad_requests": 16701,
+      "revenue": 130.88
+    },
+    {
+      "dailyImpressions": 19914,
+      "ad_requests": 17014,
+      "revenue": 104.1
+    },
+    {
+      "dailyImpressions": 18599,
+      "ad_requests": 20727,
+      "revenue": 62.21
+    },
+    {
+      "dailyImpressions": 17978,
+      "ad_requests": 18954,
+      "revenue": 141.09
+    },
+    {
+      "dailyImpressions": 14283,
+      "ad_requests": 19270,
+      "revenue": 83.78
+    },
+    {
+      "dailyImpressions": 12561,
+      "ad_requests": 22164,
+      "revenue": 56.17
+    },
+    {
+      "dailyImpressions": 18802,
+      "ad_requests": 22097,
+      "revenue": 110.69
+    },
+    {
+      "dailyImpressions": 18540,
+      "ad_requests": 16012,
+      "revenue": 105.26
+    }
+  ],
+  "overtime": [
+    {
+      "date": "2024-09-26",
+      "impressions": 15835,
+      "ad_requests": 21312,
+      "revenue": 72.61
+    },
+    {
+      "date": "2024-08-25",
+      "impressions": 13388,
+      "ad_requests": 22351,
+      "revenue": 97.82
+    },
+    {
+      "date": "2024-07-24",
+      "impressions": 10480,
+      "ad_requests": 22963,
+      "revenue": 142.97
+    },
+    {
+      "date": "2024-06-23",
+      "impressions": 11939,
+      "ad_requests": 18656,
+      "revenue": 133.65
+    },
+    {
+      "date": "2024-05-22",
+      "impressions": 19255,
+      "ad_requests": 19291,
+      "revenue": 142.11
+    },
+    {
+      "date": "2024-04-21",
+      "impressions": 15989,
+      "ad_requests": 18234,
+      "revenue": 71.14
+    },
+    {
+      "date": "2024-03-20",
+      "impressions": 14281,
+      "ad_requests": 21022,
+      "revenue": 109.28
+    },
+    {
+      "date": "2024-02-19",
+      "impressions": 18135,
+      "ad_requests": 19293,
+      "revenue": 82.01
+    },
+    {
+      "date": "2024-01-18",
+      "impressions": 11753,
+      "ad_requests": 15012,
+      "revenue": 91.73
+    },
+    {
+      "date": "2023-12-17",
+      "impressions": 18594,
+      "ad_requests": 24384,
+      "revenue": 53.11
+    },
+    {
+      "date": "2023-11-16",
+      "impressions": 12979,
+      "ad_requests": 22627,
+      "revenue": 145.02
+    },
+    {
+      "date": "2023-10-15",
+      "impressions": 16133,
+      "ad_requests": 15136,
+      "revenue": 101.84
+    },
+    {
+      "date": "2023-09-14",
+      "impressions": 14609,
+      "ad_requests": 24259,
+      "revenue": 70.13
+    },
+    {
+      "date": "2023-08-13",
+      "impressions": 10322,
+      "ad_requests": 20389,
+      "revenue": 126.25
+    },
+    {
+      "date": "2023-07-12",
+      "impressions": 13836,
+      "ad_requests": 20080,
+      "revenue": 92.03
+    },
+    {
+      "date": "2023-06-11",
+      "impressions": 15377,
+      "ad_requests": 18432,
+      "revenue": 65.87
+    },
+    {
+      "date": "2023-05-10",
+      "impressions": 16448,
+      "ad_requests": 17451,
+      "revenue": 77.05
+    },
+    {
+      "date": "2023-04-09",
+      "impressions": 12673,
+      "ad_requests": 16250,
+      "revenue": 54.51
+    },
+    {
+      "date": "2023-03-08",
+      "impressions": 11333,
+      "ad_requests": 15751,
+      "revenue": 71.54
+    },
+    {
+      "date": "2023-02-07",
+      "impressions": 14705,
+      "ad_requests": 22207,
+      "revenue": 116.11
+    }
+  ]
+}
