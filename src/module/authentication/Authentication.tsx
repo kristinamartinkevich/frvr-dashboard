@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDashboardStore } from '@/store';
 import LoginForm from './LogInForm';
-import SignupForm from './SignUpForm';
+import SignUpForm from './SignUpForm';
 
 function Authentication() {
     const { setLoggedIn } = useDashboardStore();
@@ -20,7 +20,7 @@ function Authentication() {
             {isSignUp ? (
                 <LoginForm changeAuthneticationMode={toggleForm} handleSubmit={handleSubmit} />
             ) : (
-                <SignupForm changeAuthneticationMode={toggleForm} handleSubmit={handleSubmit} />
+                <SignUpForm changeAuthneticationMode={toggleForm} handleSubmit={handleSubmit} />
             )}
         </div>
     );

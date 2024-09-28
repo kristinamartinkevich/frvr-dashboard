@@ -10,7 +10,6 @@ interface DashboardStore {
     endDate: string;
     loading: boolean;
     loggedIn: boolean;
-    drawerOpen: boolean;
     setTotals: (totals: Totals[]) => void;
     setOvertimes: (overtimes: Overtime[]) => void;
     setSelectedProperties: (properties: SharedSelection) => void;
@@ -18,7 +17,6 @@ interface DashboardStore {
     setEndDate: (date: string) => void;
     setLoading: (loading: boolean) => void;
     setLoggedIn: (loggedIn: boolean) => void;
-    setDrawerOpen: (drawerOpen: boolean) => void;
 }
 
 export const useDashboardStore = create<DashboardStore>((set) => ({
@@ -29,7 +27,6 @@ export const useDashboardStore = create<DashboardStore>((set) => ({
     endDate: "2024-09-26",
     loading: false,
     loggedIn: false,
-    drawerOpen: false,
     setTotals: (totals) => set({ totals }),
     setOvertimes: (overtimes) => set({ overtimes }),
     setSelectedProperties: (selectedProperties) => set({ selectedProperties }),
@@ -37,5 +34,4 @@ export const useDashboardStore = create<DashboardStore>((set) => ({
     setEndDate: (date) => set({ endDate: date }),
     setLoading: (loading) => set({ loading: loading }),
     setLoggedIn: (loggedIn) => set({ loggedIn: loggedIn }),
-    setDrawerOpen: (drawerOpen) => set({ drawerOpen: drawerOpen }),
 }));

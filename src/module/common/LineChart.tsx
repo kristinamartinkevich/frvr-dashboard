@@ -3,7 +3,7 @@ import { LineChart } from "@mui/x-charts";
 import { colorMap, OvertimeKey, selectedPropertiesMap } from "../../model/model";
 import { axisClasses } from '@mui/x-charts/ChartsAxis';
 import { sortDataForCharts } from "@/utils/utils";
-import { Card, CardBody, CardHeader } from "@nextui-org/react";
+import { Card, CardBody, CardHeader, Divider } from "@nextui-org/react";
 
 interface LineChartProps {
     xAxisData: Date[];
@@ -15,12 +15,13 @@ function LineChartComponent(props: LineChartProps) {
     const { xAxisData, seriesData, selectedProperty } = props;
 
     const { sortedXAxisData, sortedSeriesData, totalSum } = useMemo(() => sortDataForCharts(xAxisData, seriesData), [xAxisData, seriesData]);
-
     return (
         <Card className="p-3 chart max-w-sm">
-            <CardHeader className="flex h-5 items-center space-x-4 text-small justify-end">
-                <div className="font-semibold text-slate-900 text-center">Total:</div>
-                <h2>{totalSum}</h2>
+            <CardHeader className="flex gap-3">
+                <div className="flex flex-col">
+                    <p className="text-md">Total:</p>
+                    <p className="fw-bold text-default-500"><h1>{totalSum}</h1></p>
+                </div>
             </CardHeader>
             <CardBody>
                 <LineChart

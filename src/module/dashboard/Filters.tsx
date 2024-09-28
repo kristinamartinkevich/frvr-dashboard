@@ -48,7 +48,7 @@ function Filters() {
                         start: parseDate(startDate),
                         end: parseDate(endDate)
                     }}
-                    label="Stay range"
+                    label="Period"
                     className="max-w-sm"
                     onChange={(e) => setDateRange(e)}
                 />

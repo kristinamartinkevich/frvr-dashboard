@@ -11,6 +11,7 @@ const LineChartComponent = lazy(() => import('../common/LineChart'));
 const Filters = lazy(() => import('../dashboard/Filters'));
 
 function Dashboard() {
+
     const {
         loading,
         setLoading,
@@ -24,10 +25,11 @@ function Dashboard() {
     const getData = async (length: number) => {
         setLoading(true);
         try {
-            const overtimeResponse = await fetchOvertime(length);
-            if (overtimeResponse.data) {
-                setOvertimes(overtimeResponse.data);
-            }
+            fetchOvertime(length).then(overtimeResponse => {
+                if (overtimeResponse.data) {
+                    setOvertimes(overtimeResponse.data);
+                }
+            })
         } catch (error) {
             console.error('Error fetching data:', error);
         } finally {
@@ -39,9 +41,7 @@ function Dashboard() {
         getData(90);
     }, []);
 
-    const filteredOvertimes: Overtime[] =
-        useMemo(() => filterOvertimes(overtimes, startDate, endDate), [overtimes, startDate, endDate]);
-
+    const filteredOvertimes: Overtime[] = useMemo(() => filterOvertimes(overtimes, startDate, endDate), [overtimes, startDate, endDate]);
 
     return (
         <div className="h-full">

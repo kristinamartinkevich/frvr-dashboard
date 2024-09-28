@@ -5,7 +5,7 @@ function Loader() {
     return (
         <div className="h-full flex items-center justify-center w-full">
             <div className="p-8 text-center">
-                <Spinner />
+                <Spinner label="Loading..." />
             </div>
         </div>
     );
