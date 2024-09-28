@@ -1,11 +1,14 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { fetchOvertime } from "../../utils/apiService";
 import { Suspense, lazy } from 'react';
 import { useDashboardStore } from "@/store";
+import { Overtime, OvertimeKey } from "@/model/model";
+import { filterOvertimes } from "@/utils/utils";
 
 const Loader = lazy(() => import('../common/Loader'));
 const NoResults = lazy(() => import('../common/NoResults'));
 const LineChartComponent = lazy(() => import('../common/LineChart'));
+const Filters = lazy(() => import('../dashboard/Filters'));
 
 function Dashboard() {
     const {
@@ -13,61 +16,61 @@ function Dashboard() {
         setLoading,
         overtimes,
         setOvertimes,
-        selectedProperty,
+        selectedProperties,
         startDate,
-        endDate } = useDashboardStore();
-
+        endDate
+    } = useDashboardStore();
 
     const getData = async (length: number) => {
+        setLoading(true);
         try {
-            setLoading(true)
             const overtimeResponse = await fetchOvertime(length);
             if (overtimeResponse.data) {
                 setOvertimes(overtimeResponse.data);
             }
         } catch (error) {
-            console.error('Error in fetching data:', error);
-        }
-        finally {
-            setLoading(false)
+            console.error('Error fetching data:', error);
+        } finally {
+            setLoading(false);
         }
     };
 
     useEffect(() => {
-        getData(50);
+        getData(90);
     }, []);
 
-    const filteredOvertimes = overtimes.filter(item => {
-        const itemDate = new Date(item.date);
-        const isWithinDateRange = (!startDate || itemDate >= new Date(startDate)) &&
-            (!endDate || itemDate <= new Date(endDate));
-        return isWithinDateRange;
-    });
+    const filteredOvertimes: Overtime[] =
+        useMemo(() => filterOvertimes(overtimes, startDate, endDate), [overtimes, startDate, endDate]);
+
 
     return (
-        <div className="mt-5">
-            {
-                !loading ?
-                    (overtimes.length > 0 ? (
-                        <div className="w-full">
-                            <Suspense>
-                                <LineChartComponent
-                                    seriesData={filteredOvertimes.map(item => item[selectedProperty])}
-                                    xAxisData={filteredOvertimes.map(item => new Date(item.date))}
-                                />
-                            </Suspense>
-                        </div>
-                    ) :
-                        <Suspense>
-                            <NoResults onButtonClick={() => getData(50)} />
-                        </Suspense>
+        <div className="mt-5 h-full">
+            <Suspense>
+                {loading ? (
+                    <Loader />
+                ) : (
+                    overtimes.length > 0 ? (
+                        <>
+                            <div className="w-full flex flex-row gap-4 items-center mb-5">
+                                <Filters />
+                            </div>
+                            <div className="w-full flex flex-row flex-wrap gap-4 items-center">
+                                {Array.from(selectedProperties).map((selectedProperty) => (
+                                    <LineChartComponent
+                                        key={selectedProperty}
+                                        seriesData={filteredOvertimes.map(item => item[selectedProperty as OvertimeKey])}
+                                        xAxisData={filteredOvertimes.map(item => new Date(item.date))}
+                                        selectedProperty={selectedProperty as OvertimeKey}
+                                    />
+                                ))}
+                            </div>
+                        </>
+                    ) : (
+                        <NoResults onButtonClick={() => getData(50)} />
                     )
-                    :
-                    <Suspense>
-                        <Loader />
-                    </Suspense>
-            }
-        </div >
+                )}
+            </Suspense>
+        </div>
     );
 }
 

@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.chart {
+    min-width: 250px;
+    flex-grow: 1;
+}

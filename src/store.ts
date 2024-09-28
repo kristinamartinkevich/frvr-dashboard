@@ -1,10 +1,11 @@
 import { create } from 'zustand';
-import { Overtime, OvertimeKeys, Totals } from './model/model';
+import { Overtime, Totals } from './model/model';
+import { SharedSelection } from '@nextui-org/react';
 
 interface DashboardStore {
     totals: Totals[];
     overtimes: Overtime[];
-    selectedProperty: OvertimeKeys;
+    selectedProperties: SharedSelection;
     startDate: string;
     endDate: string;
     loading: boolean;
@@ -12,7 +13,7 @@ interface DashboardStore {
     drawerOpen: boolean;
     setTotals: (totals: Totals[]) => void;
     setOvertimes: (overtimes: Overtime[]) => void;
-    setSelectedProperty: (property: OvertimeKeys) => void;
+    setSelectedProperties: (properties: SharedSelection) => void;
     setStartDate: (date: string) => void;
     setEndDate: (date: string) => void;
     setLoading: (loading: boolean) => void;
@@ -23,7 +24,7 @@ interface DashboardStore {
 export const useDashboardStore = create<DashboardStore>((set) => ({
     totals: [],
     overtimes: [],
-    selectedProperty: 'impressions',
+    selectedProperties: new Set(["impressions"]),
     startDate: "2023-02-07",
     endDate: "2024-09-26",
     loading: false,
@@ -31,7 +32,7 @@ export const useDashboardStore = create<DashboardStore>((set) => ({
     drawerOpen: false,
     setTotals: (totals) => set({ totals }),
     setOvertimes: (overtimes) => set({ overtimes }),
-    setSelectedProperty: (property) => set({ selectedProperty: property }),
+    setSelectedProperties: (selectedProperties) => set({ selectedProperties }),
     setStartDate: (date) => set({ startDate: date }),
     setEndDate: (date) => set({ endDate: date }),
     setLoading: (loading) => set({ loading: loading }),

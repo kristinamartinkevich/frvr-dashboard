@@ -38,8 +38,7 @@ export const Navbar = () => {
         <div className="hidden lg:flex gap-4 justify-start ml-2 justify-between items-center">
           <NavbarItem key={"/"}>
             <Link
-              color="foreground"
-              href={"/"}
+              href="/"
             >
               Home
             </Link>
@@ -105,9 +104,6 @@ export const Navbar = () => {
         <div className="mx-4 mt-2 flex flex-col gap-2">
           <NavbarMenuItem key={`${"/"}-${1}`}>
             <Link
-              color={
-                "primary"
-              }
               href="#"
               size="lg"
             >

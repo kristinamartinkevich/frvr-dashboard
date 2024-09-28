@@ -11,7 +11,7 @@ export type Overtime = {
   revenue: number;
 };
 
-export type OvertimeKeys = keyof Overtime;
+export type OvertimeKey = keyof Overtime;
 
 
 

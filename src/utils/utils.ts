@@ -1,3 +1,5 @@
+import { Overtime } from "@/model/model";
+
 function getRandomInt(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -6,6 +8,15 @@ function getRandomFloat(min: number, max: number) {
     return parseFloat((Math.random() * (max - min) + min).toFixed(2));
 }
 
+function getRandomDate(startDate: string, endDate: string) {
+    const start = new Date(startDate).getTime();
+    const end = new Date(endDate).getTime();
+    const randomTimestamp = Math.floor(Math.random() * (end - start + 1)) + start;
+
+    return new Date(randomTimestamp);
+}
+
+
 export function generateRandomData(length: number) {
     const totals = Array.from({ length: length }, () => ({
         dailyImpressions: getRandomInt(10000, 20000),
@@ -13,10 +24,8 @@ export function generateRandomData(length: number) {
         revenue: getRandomFloat(50, 150),
     }));
 
-    const overtime = Array.from({ length: length }, (_, index) => {
-        const date = new Date();
-        date.setMonth(date.getMonth() - index); // Set dates in the past
-        date.setDate(date.getDate() - index); // Set dates in the past
+    const overtime = Array.from({ length: length }, () => {
+        const date = getRandomDate('2023-01-01', '2024-12-31');
         return {
             date: date.toISOString().split('T')[0], // Format the date as YYYY-MM-DD
             impressions: getRandomInt(10000, 20000),
@@ -63,4 +72,12 @@ export const sortDataForCharts = (xAxisData: Date[], seriesData: number[]) => {
     const totalSum = formatToK(Math.round(seriesData.reduce((sum, value) => sum + value, 0)));
 
     return { sortedXAxisData, sortedSeriesData, totalSum };
+};
+
+export const filterOvertimes = (overtimes: Overtime[], startDate: string, endDate: string) => {
+    return overtimes.filter(item => {
+        const itemDate = new Date(item.date);
+        return (!startDate || itemDate >= new Date(startDate)) &&
+            (!endDate || itemDate <= new Date(endDate));
+    });
 };

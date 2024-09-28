@@ -1,7 +1,5 @@
-import { useDashboardStore } from "@/store";
 
 export const Footer = () => {
-    const { setLoggedIn } = useDashboardStore();
 
     return (
         <footer className="m-4">

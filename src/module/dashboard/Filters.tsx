@@ -1,5 +1,4 @@
 import { useDashboardStore } from "@/store";
-import { Overtime } from "../../model/model";
 import { Select, SelectItem } from "@nextui-org/react";
 import { DateRangePicker } from "@nextui-org/date-picker";
 import { parseDate } from "@internationalized/date";
@@ -12,9 +11,10 @@ const options = [
 ];
 
 function Filters() {
+
     const {
-        selectedProperty,
-        setSelectedProperty,
+        selectedProperties,
+        setSelectedProperties,
         startDate,
         setStartDate,
         endDate,
@@ -28,13 +28,14 @@ function Filters() {
     };
 
     return (
-        <>
+        <div className="w-full flex flex-row gap-4 items-center mb-5">
             <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
                 <Select
                     label="Select the property"
-                    className="max-w-xs"
-                    value={selectedProperty}
-                    onChange={(e) => setSelectedProperty(e.target.value as keyof Overtime)}
+                    className="max-w-sm"
+                    selectedKeys={selectedProperties}
+                    selectionMode="multiple"
+                    onSelectionChange={setSelectedProperties}
                 >
                     {options.map((option) => (
                         <SelectItem key={option.value}>
@@ -48,11 +49,11 @@ function Filters() {
                         end: parseDate(endDate)
                     }}
                     label="Stay range"
-                    className="max-w-xs"
+                    className="max-w-sm"
                     onChange={(e) => setDateRange(e)}
                 />
             </div>
-        </>
+        </div>
     );
 }
 
