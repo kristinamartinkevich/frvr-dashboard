@@ -44,7 +44,7 @@ function Dashboard() {
 
 
     return (
-        <div className="mt-5 h-full">
+        <div className="h-full">
             <Suspense>
                 {loading ? (
                     <Loader />

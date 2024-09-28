@@ -16,7 +16,7 @@ import { useDashboardStore } from "@/store";
 import { Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@nextui-org/react";
 
 export const Navbar = () => {
-  const { setLoggedIn } = useDashboardStore();
+  const { loggedIn, setLoggedIn } = useDashboardStore();
 
   return (
     <NextUINavbar maxWidth="xl" position="sticky">
@@ -53,50 +53,54 @@ export const Navbar = () => {
         <NavbarItem className="hidden sm:flex gap-2">
           <ThemeSwitch />
         </NavbarItem>
-        <NavbarItem>
-          <Dropdown placement="bottom-end">
-            <DropdownTrigger>
-              <Avatar
-                isBordered
-                as="button"
-                className="transition-transform"
-                src="https://i.pravatar.cc/300?img=12"
-              />
-            </DropdownTrigger>
-            <DropdownMenu aria-label="Profile Actions" variant="flat">
-              <DropdownItem key="profile" className="h-14 gap-2 font-semibold" showDivider={true}>
-                benji@example.com
-              </DropdownItem>
-              <DropdownItem key="delete" className="text-danger" onAction={() => setLoggedIn(false)} color="danger">
-                Log Out
-              </DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-        </NavbarItem>
+        {loggedIn &&
+          <NavbarItem>
+            <Dropdown placement="bottom-end">
+              <DropdownTrigger>
+                <Avatar
+                  isBordered
+                  as="button"
+                  className="transition-transform"
+                  src="https://i.pravatar.cc/300?img=12"
+                />
+              </DropdownTrigger>
+              <DropdownMenu aria-label="Profile Actions" variant="flat">
+                <DropdownItem key="profile" className="h-14 gap-2 font-semibold" showDivider={true}>
+                  benji@example.com
+                </DropdownItem>
+                <DropdownItem key="delete" className="text-danger" onAction={() => setLoggedIn(false)} color="danger">
+                  Log Out
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </NavbarItem>
+        }
       </NavbarContent>
 
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
         <ThemeSwitch />
-        <NavbarItem>
-          <Dropdown placement="bottom-end">
-            <DropdownTrigger>
-              <Avatar
-                isBordered
-                as="button"
-                className="transition-transform"
-                src="https://i.pravatar.cc/300?img=12"
-              />
-            </DropdownTrigger>
-            <DropdownMenu aria-label="Profile Actions" variant="flat">
-              <DropdownItem key="profile" className="h-14 gap-2 font-semibold" showDivider={true}>
-                benji@example.com
-              </DropdownItem>
-              <DropdownItem key="delete" className="text-danger" onAction={() => setLoggedIn(false)} color="danger">
-                Log Out
-              </DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-        </NavbarItem>
+        {loggedIn &&
+          <NavbarItem>
+            <Dropdown placement="bottom-end">
+              <DropdownTrigger>
+                <Avatar
+                  isBordered
+                  as="button"
+                  className="transition-transform"
+                  src="https://i.pravatar.cc/300?img=12"
+                />
+              </DropdownTrigger>
+              <DropdownMenu aria-label="Profile Actions" variant="flat">
+                <DropdownItem key="profile" className="h-14 gap-2 font-semibold" showDivider={true}>
+                  benji@example.com
+                </DropdownItem>
+                <DropdownItem key="delete" className="text-danger" onAction={() => setLoggedIn(false)} color="danger">
+                  Log Out
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </NavbarItem>
+        }
         <NavbarMenuToggle />
       </NavbarContent>
 

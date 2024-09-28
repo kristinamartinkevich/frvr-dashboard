@@ -4,6 +4,7 @@ import { SwitchProps, useSwitch } from "@nextui-org/switch";
 
 import { useTheme } from "@/hooks/use-theme";
 import { SunFilledIcon, MoonFilledIcon } from "@/components/icons";
+import { Button } from "@nextui-org/react";
 
 export interface ThemeSwitchProps {
   className?: string;
@@ -39,19 +40,20 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
   if (!isMounted) return <div className="w-6 h-6" />;
 
   return (
-    <Component
-      aria-label={isSelected ? "Switch to dark mode" : "Switch to light mode"}
-      {...getBaseProps({
-        className: `px-px transition-opacity hover:opacity-80 cursor-pointer ${className || ''} ${classNames?.base || ''}`,
-      })}
-    >
-      <VisuallyHidden>
-        <input {...getInputProps()} />
-      </VisuallyHidden>
-      <div
-        {...getWrapperProps()}
-        className={slots.wrapper({
-          class: `w-auto h-auto 
+    <Button isIconOnly >
+      <Component
+        aria-label={isSelected ? "Switch to dark mode" : "Switch to light mode"}
+        {...getBaseProps({
+          className: `px-px transition-opacity hover:opacity-80 cursor-pointer ${className || ''} ${classNames?.base || ''}`,
+        })}
+      >
+        <VisuallyHidden>
+          <input {...getInputProps()} />
+        </VisuallyHidden>
+        <div
+          {...getWrapperProps()}
+          className={slots.wrapper({
+            class: `w-auto h-auto 
                 bg-transparent 
                 rounded-lg 
                 flex items-center justify-center 
@@ -60,14 +62,15 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
                 pt-px 
                 px-0 
                 mx-0 ${classNames?.wrapper || ''}`,
-        })}
-      >
-        {isSelected ? (
-          <MoonFilledIcon size={22} />
-        ) : (
-          <SunFilledIcon size={22} />
-        )}
-      </div>
-    </Component>
+          })}
+        >
+          {isSelected ? (
+            <MoonFilledIcon size={22} />
+          ) : (
+            <SunFilledIcon size={22} />
+          )}
+        </div>
+      </Component>
+    </Button>
   );
 };
