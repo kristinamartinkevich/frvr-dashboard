@@ -3,7 +3,7 @@ import { LineChart } from "@mui/x-charts";
 import { colorMap, OvertimeKey, selectedPropertiesMap } from "../../model/model";
 import { axisClasses } from '@mui/x-charts/ChartsAxis';
 import { sortDataForCharts } from "@/utils/utils";
-import { Card, CardBody, CardHeader, Divider } from "@nextui-org/react";
+import { Card, CardBody, CardHeader } from "@nextui-org/react";
 
 interface LineChartProps {
     xAxisData: Date[];
