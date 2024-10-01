@@ -1,37 +1,13 @@
-import { FC, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { VisuallyHidden } from "@react-aria/visually-hidden";
-import { SwitchProps, useSwitch } from "@nextui-org/switch";
-
 import { useTheme } from "@/hooks/use-theme";
 import { SunFilledIcon, MoonFilledIcon } from "@/components/icons";
 import { Button } from "@nextui-org/react";
 
-export interface ThemeSwitchProps {
-  className?: string;
-  classNames?: SwitchProps["classNames"];
-}
 
-export const ThemeSwitch: FC<ThemeSwitchProps> = ({
-  className,
-  classNames,
-}) => {
+export const ThemeSwitch = () => {
   const [isMounted, setIsMounted] = useState(false);
-
   const { theme, toggleTheme } = useTheme();
-
-  const onChange = toggleTheme;
-
-  const {
-    Component,
-    slots,
-    isSelected,
-    getBaseProps,
-    getInputProps,
-    getWrapperProps,
-  } = useSwitch({
-    isSelected: theme === "light",
-    onChange,
-  });
 
   useEffect(() => {
     setIsMounted(true);
@@ -39,38 +15,23 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
 
   if (!isMounted) return <div className="w-6 h-6" />;
 
+  const isLightTheme = theme === "light";
+
   return (
-    <Button isIconOnly >
-      <Component
-        aria-label={isSelected ? "Switch to dark mode" : "Switch to light mode"}
-        {...getBaseProps({
-          className: `px-px transition-opacity hover:opacity-80 cursor-pointer ${className || ''} ${classNames?.base || ''}`,
-        })}
-      >
-        <VisuallyHidden>
-          <input {...getInputProps()} />
-        </VisuallyHidden>
-        <div
-          {...getWrapperProps()}
-          className={slots.wrapper({
-            class: `w-auto h-auto 
-                bg-transparent 
-                rounded-lg 
-                flex items-center justify-center 
-                group-data-[selected=true]:bg-transparent 
-                !text-default-500 
-                pt-px 
-                px-0 
-                mx-0 ${classNames?.wrapper || ''}`,
-          })}
-        >
-          {isSelected ? (
-            <MoonFilledIcon size={22} />
-          ) : (
-            <SunFilledIcon size={22} />
-          )}
-        </div>
-      </Component>
+    <Button
+      aria-label={isLightTheme ? "Switch to dark mode" : "Switch to light mode"}
+      onPress={toggleTheme}
+      className={`px-2 py-1 transition-opacity hover:opacity-80 cursor-pointer rounded-lg`}
+      isIconOnly
+    >
+      {isLightTheme ? (
+        <MoonFilledIcon size={22} aria-hidden="true" />
+      ) : (
+        <SunFilledIcon size={22} aria-hidden="true" />
+      )}
+      <VisuallyHidden>
+        {isLightTheme ? "Dark Mode" : "Light Mode"}
+      </VisuallyHidden>
     </Button>
   );
 };
